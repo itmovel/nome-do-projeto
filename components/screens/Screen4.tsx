@@ -65,7 +65,12 @@ const ButtonWrapper = styled.div`
 
 // --- Component ---
 
-const Screen4 = ({ setScreen }) => {
+// Defina o tipo para as props da tela
+type ScreenProps = {
+  setScreen: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Screen4 =  ({ setScreen }: ScreenProps) => {
   return (
     <PageContainer>
       <Header onHomeClick={() => setScreen(1)} />

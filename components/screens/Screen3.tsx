@@ -113,7 +113,12 @@ const BenefitItem = styled.li`
 
 // --- Component ---
 
-const Screen3 = ({ setScreen }) => {
+// Defina o tipo para as props da tela
+type ScreenProps = {
+  setScreen: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Screen3 =  ({ setScreen }: ScreenProps) => {
   // Estado inicial definido como 'power' para corresponder à imagem
   const [activePlan, setActivePlan] = useState<'power' | 'light'>('power');
 

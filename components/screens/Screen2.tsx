@@ -60,7 +60,12 @@ const PrivacyLink = styled.a`
   cursor: pointer;
 `;
 
-const Screen2 = ({ setScreen }) => {
+// Defina o tipo para as props da tela
+type ScreenProps = {
+  setScreen: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Screen2 =  ({ setScreen }: ScreenProps) => {
   return (
     <PageContainer>
       <Header onHomeClick={() => setScreen(1)} />

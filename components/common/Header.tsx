@@ -38,8 +38,13 @@ const IconWrapper = styled.div`
   cursor: pointer;
 `;
 
-// O componente Header agora renderiza as duas barras
-const Header = ({ onHomeClick }) => (
+// Defina os tipos para as props do Header
+type HeaderProps = {
+  onHomeClick: () => void;
+};
+
+// Aplique os tipos às props
+const Header = ({ onHomeClick }: HeaderProps) => (
   <HeaderWrapper>
     <TopBar>Olá, Felipe, você está em Mercado Livre</TopBar>
     <BottomBar>

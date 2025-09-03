@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; // Importe o React para usar React.ReactNode
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
@@ -17,8 +17,16 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, onClick }) => (
-  <StyledButton onClick={onClick}>{children}</StyledButton>
+// Defina os tipos para as props do botão
+type ButtonProps = {
+  children: React.ReactNode; // 'children' pode ser qualquer elemento React válido
+  onClick: () => void; // 'onClick' é uma função que não retorna nada
+  style?: React.CSSProperties; // Adicione 'style' como opcional
+};
+
+// Aplique os tipos às props
+const Button = ({ children, onClick, style }: ButtonProps) => (
+  <StyledButton onClick={onClick} style={style}>{children}</StyledButton>
 );
 
 export default Button;

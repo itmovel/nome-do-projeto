@@ -96,7 +96,12 @@ const FaqLink = styled.a`
   font-weight: bold; cursor: pointer; margin-top: 2rem;
 `;
 
-const Screen1 = ({ setScreen }) => {
+// Defina o tipo para as props da tela
+type ScreenProps = {
+  setScreen: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const Screen1 = ({ setScreen }: ScreenProps) => {
   const handleNext = () => setScreen(2);
 
   return (
