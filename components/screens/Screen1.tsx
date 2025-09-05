@@ -42,7 +42,7 @@ const LeftColumn = styled.div`
   font-weight: bold; font-size: 1.1rem;
 `;
 const BlueText = styled.span`
-  color: #1273f3ff;
+  color: #0074ff;
 `;
 const BlueTextBlock = styled(BlueText)`
   display: block;
@@ -69,9 +69,9 @@ const StepItem = styled.div`
   display: flex; flex-direction: column; align-items: center; max-width: 100px;
 `;
 const StepCircle = styled.div`
-  width: 40px; height: 40px; border-radius: 50%; border: 2px solid #1273f3ff;
+  width: 40px; height: 40px; border-radius: 50%; border: 2px solid #0074ff;
   display: flex; align-items: center; justify-content: center;
-  font-weight: bold; color: #1273f3ff; margin-bottom: 0.5rem;
+  font-weight: bold; color: #0074ff; margin-bottom: 0.5rem;
 `;
 const StepText = styled.p`
   font-size: 0.9rem; color: #555; margin: 0;
@@ -99,14 +99,16 @@ const FaqLink = styled.a`
 // Defina o tipo para as props da tela
 type ScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<number>>;
+  clientName: string;
+  onHomeClick: () => void; // ADICIONE ESTA LINHA
 }
 
-const Screen1 = ({ setScreen }: ScreenProps) => {
+const Screen1 = ({ setScreen, clientName, onHomeClick }: ScreenProps) => {
   const handleNext = () => setScreen(2);
 
   return (
     <div>
-      <Header onHomeClick={() => setScreen(1)} />
+      <Header onHomeClick={onHomeClick} clientName={clientName} />
       <ScreenContainer>
         {/* Hero Card */}
         <HeroCard>

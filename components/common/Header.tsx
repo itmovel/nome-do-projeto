@@ -4,9 +4,10 @@ import Image from 'next/image';
 
 // Container principal que agrupa as duas barras
 const HeaderWrapper = styled.div`
-  background-color: #3d5afe;
+  background-color: #134581;
   color: white;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-weight: bold;
 `;
 
 // Barra superior apenas com a saudação
@@ -41,12 +42,13 @@ const IconWrapper = styled.div`
 // Defina os tipos para as props do Header
 type HeaderProps = {
   onHomeClick: () => void;
+  clientName: string; // ADICIONE ESTA LINHA
 };
 
-// Aplique os tipos às props
-const Header = ({ onHomeClick }: HeaderProps) => (
+// Receba clientName nas props e use-o no JSX
+const Header = ({ onHomeClick, clientName }: HeaderProps) => (
   <HeaderWrapper>
-    <TopBar>Olá, Felipe, você está em Mercado Livre</TopBar>
+    <TopBar>Olá, {clientName}, você está em Mercado Livre</TopBar>
     <BottomBar>
       <HomeLink onClick={onHomeClick}>
         <Image src="/images/home_icon.svg" alt="Home" width={24} height={24} />

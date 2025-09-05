@@ -63,12 +63,15 @@ const PrivacyLink = styled.a`
 // Defina o tipo para as props da tela
 type ScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<number>>;
+  clientName: string;
+  onHomeClick: () => void;
+  onContinueClick: () => void;
 }
 
-const Screen2 =  ({ setScreen }: ScreenProps) => {
+const Screen2 = ({ setScreen, clientName, onHomeClick, onContinueClick }: ScreenProps) => {
   return (
     <PageContainer>
-      <Header onHomeClick={() => setScreen(1)} />
+      <Header onHomeClick={onHomeClick} clientName={clientName} />
       
       <ContentContainer>
         <Title>Dados para uma simulação mais rápida e precisa</Title>
@@ -86,7 +89,7 @@ const Screen2 =  ({ setScreen }: ScreenProps) => {
           />
         </ImageWrapper>
         
-        <Button onClick={() => setScreen(3)}>Continuar com meus dados</Button>
+        <Button onClick={onContinueClick}>Continuar com meus dados</Button>
       </ContentContainer>
       
       <Footer>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Header from '../common/Header';
 import Button from '../common/Button';
 import Image from 'next/image';
+import { Unit } from '../../types';
 
 // --- Styled Components ---
 
@@ -32,7 +33,7 @@ const AddressText = styled.div`
 
 const ChangeButton = styled.button`
   background: none; border: none; cursor: pointer; display: flex;
-  flex-direction: column; align-items: center; color: #673ab7;
+  flex-direction: column; align-items: center; color: #0074ff;
   font-weight: bold; gap: 4px;
 `;
 
@@ -61,10 +62,10 @@ const RecommendedTag = styled.div`
 
 const PlanToggle = styled.div`
   display: inline-flex; /* Use inline-flex para se ajustar ao conteúdo */
-  background: #ede7f6; /* Fundo roxo bem claro */
+  background: #e7ebf6; /* Fundo roxo bem claro */
   border-radius: 24px;
   padding: 4px;
-  border: 1px solid #d1c4e9;
+  border: 1px solid #ffffff;
 `;
 
 const ToggleButton = styled.button<{ active: boolean }>`
@@ -74,7 +75,7 @@ const ToggleButton = styled.button<{ active: boolean }>`
   font-weight: bold;
   cursor: pointer;
   background-color: ${props => props.active ? '#ffffff' : 'transparent'};
-  color: ${props => props.active ? '#673ab7' : '#555'};
+  color: ${props => props.active ? '#0074ff' : '#555'};
   transition: all 0.2s ease-in-out;
   /* Adiciona a sombra sutil apenas no botão ativo para dar profundidade */
   box-shadow: ${props => props.active ? '0 2px 4px rgba(0,0,0,0.1)' : 'none'};
@@ -92,10 +93,10 @@ const TariffType = styled.p`
 `;
 const PriceLabel = styled.p<{ color?: string }>`
   margin-top: 1.5rem; margin-bottom: 0.5rem;
-  color: ${props => props.color || '#d81b60'};
+  color: ${props => props.color || '#e71515'};
 `;
 const LargePrice = styled.p`
-  font-size: 2.2rem; font-weight: bold; margin: 0; color: #673ab7;
+  font-size: 2.2rem; font-weight: bold; margin: 0; color: #134581;
 `;
 const SmallPrice = styled.p`
   font-size: 1rem; color: #555; margin-top: 1.5rem;
@@ -116,10 +117,13 @@ const BenefitItem = styled.li`
 // Defina o tipo para as props da tela
 type ScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<number>>;
-}
+  clientName: string;
+  selectedUnit: Unit | null; // A unidade selecionada na tela anterior
+  onHomeClick: () => void;
+  units: Unit[];
+};
 
-const Screen3 =  ({ setScreen }: ScreenProps) => {
-  // Estado inicial definido como 'power' para corresponder à imagem
+const Screen3 = ({ setScreen, clientName, selectedUnit, onHomeClick, units }: ScreenProps) => {
   const [activePlan, setActivePlan] = useState<'power' | 'light'>('power');
 
   const benefits = {
@@ -137,7 +141,7 @@ const Screen3 =  ({ setScreen }: ScreenProps) => {
 
   return (
     <PageContainer>
-      <Header onHomeClick={() => setScreen(1)} />
+      <Header onHomeClick={onHomeClick} clientName={clientName} />
       <ContentContainer>
         <Title>Faça parte do Mercado Livre, com a credibilidade de uma empresa que você já conhece.</Title>
 
@@ -146,10 +150,12 @@ const Screen3 =  ({ setScreen }: ScreenProps) => {
             <strong>Unidade (UC):</strong> 80508359<br/>
             <strong>Endereço:</strong> Comunidade Urbana Vila São João, 118. Vila São João, Mandirituba, PR.
           </AddressText>
-          <ChangeButton>
-            <Image src="/images/change_icon.svg" alt="" width={24} height={24} />
-            Trocar
-          </ChangeButton>
+         {units.length > 1 && (
+            <ChangeButton onClick={() => setScreen(2.5)}>
+              <Image src="/images/change_icon.svg" alt="" width={24} height={24} />
+              Trocar
+            </ChangeButton>
+          )}
         </AddressCard>
 
         <PlanSelectorContainer>
@@ -165,7 +171,7 @@ const Screen3 =  ({ setScreen }: ScreenProps) => {
           <PriceLabel>Em xx anos você economizará</PriceLabel>
           <LargePrice>R$ {activePlan === 'power' ? '35.640,00' : '38.210,00'}</LargePrice>
 
-          <PriceLabel color="#673ab7">Economia mensal estimada</PriceLabel>
+          <PriceLabel color="#0074ff">Economia mensal estimada</PriceLabel>
           <LargePrice>R$ {activePlan === 'power' ? '990,00' : '1.050,00'}</LargePrice>
 
           <SmallPrice>

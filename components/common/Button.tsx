@@ -1,8 +1,8 @@
-import React from 'react'; // Importe o React para usar React.ReactNode
+import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-  background-color: #3d5afe;
+  background-color: #134581;
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -11,22 +11,32 @@ const StyledButton = styled.button`
   cursor: pointer;
   width: 100%;
   margin-top: 1rem;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
 
   &:hover {
-    background-color: #304ffe;
+    background-color: #092ae7ff;
+  }
+
+  /* Adicione este estilo para o estado desabilitado */
+  &:disabled {
+    background-color: #aeb8c2;
+    cursor: not-allowed;
   }
 `;
 
-// Defina os tipos para as props do botão
 type ButtonProps = {
-  children: React.ReactNode; // 'children' pode ser qualquer elemento React válido
-  onClick: () => void; // 'onClick' é uma função que não retorna nada
-  style?: React.CSSProperties; // Adicione 'style' como opcional
+  children: React.ReactNode;
+  onClick: () => void;
+  style?: React.CSSProperties;
+  disabled?: boolean; // Adicione a prop disabled opcional
 };
 
-// Aplique os tipos às props
-const Button = ({ children, onClick, style }: ButtonProps) => (
-  <StyledButton onClick={onClick} style={style}>{children}</StyledButton>
+// Receba e aplique a prop disabled
+const Button = ({ children, onClick, style, disabled }: ButtonProps) => (
+  <StyledButton onClick={onClick} style={style} disabled={disabled}>
+    {children}
+  </StyledButton>
 );
 
 export default Button;

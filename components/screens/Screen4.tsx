@@ -68,12 +68,14 @@ const ButtonWrapper = styled.div`
 // Defina o tipo para as props da tela
 type ScreenProps = {
   setScreen: React.Dispatch<React.SetStateAction<number>>;
+  clientName: string;
+  onHomeClick: () => void; 
 }
 
-const Screen4 =  ({ setScreen }: ScreenProps) => {
+const Screen4 =  ({ setScreen, clientName, onHomeClick }: ScreenProps) => {
   return (
     <PageContainer>
-      <Header onHomeClick={() => setScreen(1)} />
+      <Header onHomeClick={onHomeClick} clientName={clientName} />
       
       <ContentContainer>
         <Image 
@@ -95,7 +97,7 @@ const Screen4 =  ({ setScreen }: ScreenProps) => {
       </ContentContainer>
       
       <ButtonWrapper>
-        <Button onClick={() => setScreen(1)}>RETORNAR AO INÍCIO</Button>
+        <Button onClick={onHomeClick}>RETORNAR AO INÍCIO</Button>
       </ButtonWrapper>
     </PageContainer>
   );
