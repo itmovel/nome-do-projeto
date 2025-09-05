@@ -118,15 +118,15 @@ const Screen2_5 = ({ setScreen, clientName, units, isLoading, selectedUnit, setS
     return (
       <div>
         {units.map(unit => (
-          <UnitCard key={unit.id} isSelected={selectedUnit?.id === unit.id}>
+          <UnitCard key={unit.uc} isSelected={selectedUnit?.uc === unit.uc}>
             <RadioInput
               type="radio"
               name="unit-selection"
-              value={unit.id}
-              checked={selectedUnit?.id === unit.id}
+              value={unit.uc}
+              checked={selectedUnit?.uc === unit.uc}
               onChange={() => setSelectedUnit(unit)}
             />
-            <CustomRadio isSelected={selectedUnit?.id === unit.id} />
+            <CustomRadio isSelected={selectedUnit?.uc === unit.uc} />
             <UnitInfo>
               <strong>Unidade (UC):</strong> {unit.uc}<br />
               <strong>Endereço:</strong> {unit.address}

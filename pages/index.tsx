@@ -44,11 +44,11 @@ const handleFetchUnits = async () => {
       if (!response.ok) { throw new Error('Falha ao buscar UCs'); }
       const ucsData = await response.json();
       
-      const formattedUnits = ucsData.map((unit: any, index: number) => ({
-        id: index,
-        uc: unit.Unidade,
-        address: unit.Endereço
+      const formattedUnits: Unit[] = ucsData.map((unitData: { Unidade: string, Endereço: string }) => ({
+        uc: unitData.Unidade,
+        address: unitData.Endereço
       }));
+
 
       // --- LÓGICA DE DECISÃO PRINCIPAL ---
       if (formattedUnits.length === 1) {
