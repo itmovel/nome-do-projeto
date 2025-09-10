@@ -1,5 +1,5 @@
 import React from 'react';
-import { Unit } from '@/types/index';
+import { Unit } from '@/types';
 import Button from '@/components/ui/Button';
 import { 
   ContentContainer, 
